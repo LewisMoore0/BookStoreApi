@@ -14,8 +14,11 @@ public class BooksController : ControllerBase
         _booksService = booksService;
 
     [HttpGet]
-    public async Task<List<Book>> Get() =>
-        await _booksService.GetAsync();
+    public async Task<List<Book>> Get()
+    {
+        var bookList = await _booksService.GetAsync();
+        return bookList;
+    }
 
     [HttpGet("{id:length(24)}")]
     public async Task<ActionResult<Book>> Get(string id)
